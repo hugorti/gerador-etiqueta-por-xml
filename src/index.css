@@ -1,0 +1,165 @@
+@media print {
+  @page {
+    size: 397px 265px; /* Define o tamanho da página */
+    margin: 0; /* Remove margens */
+  }
+  
+  body {
+    margin: 0; /* Remove margens ao imprimir */
+    font-size: 10px; /* Tamanho da fonte para impressão */
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+
+  /* Remova quaisquer margens ou sombreamentos no container de impressão */
+  .impressao-container {
+    width: 397px; /* Largura igual ao tamanho da página */
+    height: 265px; /* Altura igual ao tamanho da página */
+    padding: 0; /* Remove padding para evitar overflow */
+    box-shadow: none; /* Remove sombra na impressão */
+  }
+}
+
+/* Estilos gerais */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4; /* Cor de fundo */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  background: white;
+  border: 2px solid #007bff; /* Borda azul */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 500px;
+  overflow: auto;
+}
+
+.label {
+  width: 100%;
+  font-weight: bold; /* Texto em negrito */
+}
+
+.div-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.div-title p {
+  font-weight: bold;
+  background-color: black;
+  color: white;
+}
+
+.div-endereco{
+  display: flex;
+  width: 100%;
+  height: 30px;
+  justify-content: space-between;
+}
+
+span{
+  width: 100%;
+}
+
+.footer{
+  background-color: black;
+  color: white;
+  text-decoration: underline;
+}
+
+.logo {
+  width: 200px; /* Ajuste a largura conforme necessário */
+  height: 40px; /* Mantém a proporção da imagem */
+  margin-right: 10px; /* Espaçamento entre a logo e o texto */
+  color: black;
+}
+
+/* Estilos para o título */
+.titulo-importador {
+  font-size: 24px; /* Tamanho da fonte do título */
+  font-weight: bold; /* Negrito */
+  margin-bottom: 15px; /* Espaçamento abaixo do título */
+  text-align: center; /* Centraliza o título */
+  color: #007bff;
+}
+
+/* Estilos para o campo de entrada de arquivo */
+.input-file {
+  margin-bottom: 15px; /* Espaçamento abaixo do campo de arquivo */
+  padding: 10px; /* Espaçamento interno do campo */
+  border: 1px solid #007bff; /* Borda azul */
+  border-radius: 4px; /* Borda arredondada */
+  width: 97%; /* Largura total do container */
+  font-size: 16px; /* Tamanho da fonte */
+  background-color: #f9f9f9; /* Cor de fundo leve */
+}
+
+/* Estilos para o container do input */
+.input-container {
+  margin-bottom: 15px; /* Espaçamento abaixo do container do input */
+}
+
+/* Estilos para o label */
+.label {
+  display: block; /* Exibe o label como um bloco */
+  margin-bottom: 5px; /* Espaçamento abaixo do label */
+  font-weight: bold; /* Negrito */
+}
+
+/* Estilos para o campo numérico */
+.input-number {
+  padding: 10px; /* Espaçamento interno do campo numérico */
+  border: 1px solid #007bff; /* Borda azul */
+  border-radius: 4px; /* Borda arredondada */
+  width: 20%; /* Largura total do container */
+  font-size: 16px; /* Tamanho da fonte */
+  background-color: #f9f9f9; /* Cor de fundo leve */
+}
+
+/* Estilos para o botão de imprimir */
+.btn-imprimir {
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  border: none; /* Remove borda padrão */
+  border-radius: 4px; /* Borda arredondada */
+  background-color: #007bff; /* Cor de fundo do botão */
+  color: white; /* Cor do texto do botão */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor em forma de mão ao passar sobre o botão */
+  transition: background-color 0.3s; /* Transição suave para cor de fundo */
+}
+
+.btn-imprimir:hover {
+  background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+.div-button-imprimir{
+  display: flex;
+  justify-content: space-between;
+}
+
+.page{
+  border: 1px solid;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+strong{
+  color: #007bff;
+}
