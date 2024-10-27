@@ -88,6 +88,10 @@ const App: React.FC = () => {
   };
 
   const handleImprimir = () => {
+    if (!numeroPedido) {
+      toast.error("Campo 'Número do Pedido' é obrigatório.");
+      return; // Não prossegue com a impressão
+    }
     const printContent = document.getElementById('print-content');
     if (printContent) {
       printJS({
@@ -131,6 +135,7 @@ const App: React.FC = () => {
     }
   };
 
+
   useEffect(() => {
     if (parsedData?.vol?.qVol) {
       setQuantidadeImpressao(parsedData.vol.qVol);
@@ -160,6 +165,7 @@ const App: React.FC = () => {
                   <label className="label">Número do Pedido:</label>
                   <input
                     type="text"
+                    required
                     value={numeroPedido}
                     onChange={(e) => setNumeroPedido(e.target.value)}
                     className="input-number"
@@ -190,7 +196,7 @@ const App: React.FC = () => {
                       <span className="label">{parsedData.enderEmit.xMun} / {parsedData.enderEmit.UF}</span>
                     </div>
                     <div className="div-label-nf">
-                      <span className="label">{parsedData.vol.esp} {index + 1} / {quantidadeImpressao}</span>
+                      <span className="label-nf">{parsedData.vol.esp} {index + 1} / {quantidadeImpressao}</span>
                       <span className="label-nf">NF: {parsedData.nNF}</span>
                     </div>
                     <div className='div-footer'><span className="footer">CARO CLIENTE, CONFIRA SUA MERCADORIA NO ATO DO RECEBIMENTO</span></div>

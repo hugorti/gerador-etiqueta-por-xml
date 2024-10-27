@@ -28,7 +28,7 @@ body {
   flex-direction: column;
   width: 900px;
   background: white;
-  border: 2px solid #007bff; /* Borda azul */
+  border: 2px solid black; /* Borda azul */
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -91,14 +91,14 @@ body {
   font-weight: bold; /* Negrito */
   margin-bottom: 15px; /* Espaçamento abaixo do título */
   text-align: center; /* Centraliza o título */
-  color: #007bff;
+  color: #FF3333;
 }
 
 /* Estilos para o campo de entrada de arquivo */
 .input-file {
   margin-bottom: 15px; /* Espaçamento abaixo do campo de arquivo */
   padding: 10px; /* Espaçamento interno do campo */
-  border: 1px solid #007bff; /* Borda azul */
+  border: 1px solid #FF3333; /* Borda azul */
   border-radius: 4px; /* Borda arredondada */
   width: 97%; /* Largura total do container */
   font-size: 16px; /* Tamanho da fonte */
@@ -132,7 +132,7 @@ body {
 /* Estilos para o campo numérico */
 .input-number {
   padding: 10px; /* Espaçamento interno do campo numérico */
-  border: 1px solid #007bff; /* Borda azul */
+  border: 1px solid #FF3333; /* Borda azul */
   border-radius: 4px; /* Borda arredondada */
   width: 50%; /* Largura total do container */
   font-size: 16px; /* Tamanho da fonte */
@@ -144,7 +144,7 @@ body {
   padding: 10px 20px; /* Espaçamento interno do botão */
   border: none; /* Remove borda padrão */
   border-radius: 4px; /* Borda arredondada */
-  background-color: #007bff; /* Cor de fundo do botão */
+  background-color: #FF3333; /* Cor de fundo do botão */
   color: white; /* Cor do texto do botão */
   font-size: 16px; /* Tamanho da fonte */
   cursor: pointer; /* Cursor em forma de mão ao passar sobre o botão */
@@ -152,7 +152,7 @@ body {
 }
 
 .btn-imprimir:hover {
-  background-color: #0056b3; /* Cor do botão ao passar o mouse */
+  background-color:#db4444; /* Cor do botão ao passar o mouse */
 }
 
 .div-button-imprimir{
