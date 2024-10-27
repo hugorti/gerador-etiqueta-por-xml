@@ -1,4 +1,17 @@
 /* Estilos gerais */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #ffffff; /* Cor de fundo branca no tema escuro */
+    color: black; /* Define a cor do texto para preto ou uma cor que contraste */
+  }
+  
+  .container {
+    background: white; /* Garante que o fundo do container seja branco */
+  }
+
+  /* Adicione outras regras específicas que você deseja forçar no tema escuro */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +20,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f4f4f4; /* Cor de fundo */
+  background-color:  #ffffff; /* Cor de fundo */
 }
 
 .container {
@@ -218,7 +231,7 @@ body {
 
 @media (max-width: 810px) {
   .container {
-    width: 95%;/* Ajusta a largura para dispositivos menores */
+    width: 93%;/* Ajusta a largura para dispositivos menores */
   }
 
   .logo{
