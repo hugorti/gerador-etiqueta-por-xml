@@ -1,17 +1,4 @@
 /* Estilos gerais */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #ffffff; /* Cor de fundo branca no tema escuro */
-    color: black; /* Define a cor do texto para preto ou uma cor que contraste */
-  }
-  
-  .container {
-    background: white; /* Garante que o fundo do container seja branco */
-  }
-
-  /* Adicione outras regras específicas que você deseja forçar no tema escuro */
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,7 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color:  #ffffff; /* Cor de fundo */
+  background-color: #f4f4f4; /* Cor de fundo */
 }
 
 .container {
@@ -91,14 +78,14 @@ body {
   font-weight: bold; /* Negrito */
   margin-bottom: 15px; /* Espaçamento abaixo do título */
   text-align: center; /* Centraliza o título */
-  color: #FF3333;
+  color: #ff3333;
 }
 
 /* Estilos para o campo de entrada de arquivo */
 .input-file {
   margin-bottom: 15px; /* Espaçamento abaixo do campo de arquivo */
   padding: 10px; /* Espaçamento interno do campo */
-  border: 1px solid #FF3333; /* Borda azul */
+  border: 1px solid #ff3333; /* Borda azul */
   border-radius: 4px; /* Borda arredondada */
   width: 97%; /* Largura total do container */
   font-size: 16px; /* Tamanho da fonte */
@@ -132,7 +119,7 @@ body {
 /* Estilos para o campo numérico */
 .input-number {
   padding: 10px; /* Espaçamento interno do campo numérico */
-  border: 1px solid #FF3333; /* Borda azul */
+  border: 1px solid #ff3333; /* Borda azul */
   border-radius: 4px; /* Borda arredondada */
   width: 50%; /* Largura total do container */
   font-size: 16px; /* Tamanho da fonte */
@@ -144,7 +131,7 @@ body {
   padding: 10px 20px; /* Espaçamento interno do botão */
   border: none; /* Remove borda padrão */
   border-radius: 4px; /* Borda arredondada */
-  background-color: #FF3333; /* Cor de fundo do botão */
+  background-color: #ff3333; /* Cor de fundo do botão */
   color: white; /* Cor do texto do botão */
   font-size: 16px; /* Tamanho da fonte */
   cursor: pointer; /* Cursor em forma de mão ao passar sobre o botão */
@@ -152,7 +139,7 @@ body {
 }
 
 .btn-imprimir:hover {
-  background-color:#db4444; /* Cor do botão ao passar o mouse */
+  background-color: #c73a3a; /* Cor do botão ao passar o mouse */
 }
 
 .div-button-imprimir{
@@ -231,7 +218,7 @@ body {
 
 @media (max-width: 810px) {
   .container {
-    width: 93%;/* Ajusta a largura para dispositivos menores */
+    width: 95%;/* Ajusta a largura para dispositivos menores */
   }
 
   .logo{
@@ -293,9 +280,12 @@ body {
 }
 
 @media (max-width: 456px) {
+  .container {
+    width: 93%;/* Ajusta a largura para dispositivos menores */
+  }
 
   .footer{
-    font-size: 2.56vw;
+    font-size: 2.58vw;
   }
 
 }
@@ -316,7 +306,7 @@ body {
 
 }
 
-@media (max-width: 300px) {
+@media (max-width: 330px) {
 
   .footer{
     font-size: 2.3vw;
