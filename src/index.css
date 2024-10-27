@@ -1,35 +1,8 @@
-@media print {
-  @page {
-    size: 397px 265px; /* Define o tamanho da página */
-    margin: 0; /* Remove margens */
-  }
-  
-  body {
-    margin: 0; /* Remove margens ao imprimir */
-    font-size: 10px; /* Tamanho da fonte para impressão */
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-
-  /* Remova quaisquer margens ou sombreamentos no container de impressão */
-  .impressao-container {
-    width: 397px; /* Largura igual ao tamanho da página */
-    height: 265px; /* Altura igual ao tamanho da página */
-    padding: 0; /* Remove padding para evitar overflow */
-    box-shadow: none; /* Remove sombra na impressão */
-  }
-}
-
 /* Estilos gerais */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,21 +17,24 @@ body {
   background: white;
   border: 2px solid #007bff; /* Borda azul */
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-height: 500px;
+  max-height: 525px;
   overflow: auto;
 }
 
-.label {
+
+.body-container{
   width: 100%;
+}
+
+.label {
   font-weight: bold; /* Texto em negrito */
 }
 
 .div-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .div-title p {
@@ -70,12 +46,17 @@ body {
 .div-endereco{
   display: flex;
   width: 100%;
-  height: 30px;
+  height: auto;
   justify-content: space-between;
+  align-items: center;
 }
 
-span{
+.div-label-nf{
+  display: flex;
   width: 100%;
+  
+  align-items: center;
+  justify-content: space-between;
 }
 
 .footer{
@@ -113,7 +94,12 @@ span{
 
 /* Estilos para o container do input */
 .input-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
   margin-bottom: 15px; /* Espaçamento abaixo do container do input */
+  align-items: center;
+  justify-content: center;
 }
 
 /* Estilos para o label */
@@ -123,12 +109,19 @@ span{
   font-weight: bold; /* Negrito */
 }
 
+.label-nf{
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+} 
+
 /* Estilos para o campo numérico */
 .input-number {
   padding: 10px; /* Espaçamento interno do campo numérico */
   border: 1px solid #007bff; /* Borda azul */
   border-radius: 4px; /* Borda arredondada */
-  width: 20%; /* Largura total do container */
+  width: 50%; /* Largura total do container */
   font-size: 16px; /* Tamanho da fonte */
   background-color: #f9f9f9; /* Cor de fundo leve */
 }
@@ -151,15 +144,169 @@ span{
 
 .div-button-imprimir{
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  flex-direction: column;
 }
 
 .page{
-  border: 1px solid;
+  display: flex;
   margin-bottom: 15px;
+  justify-content: center;
+}
+
+.transportadora{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.div-trans{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 30px;
+}
+
+.div-section{
+  width: 60%;
+  border: 1px solid;
   padding: 10px;
 }
 
-strong{
-  color: #007bff;
+.div-footer {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos responsivos */
+@media (max-width: 950px) {
+  .container {
+    max-width: 800px;/* Ajusta a largura para dispositivos menores */
+  }
+
+  .label {
+    font-size: 1.5vw;
+  }
+
+  .transportadora{
+    font-size: 1.5vw;
+  }
+
+  .footer{
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 860px) {
+  .container {
+    max-width: 740px;/* Ajusta a largura para dispositivos menores */
+  }
+
+  .input-file {
+    width: 93%;
+  }
+
+  .footer{
+    font-size: 13.5px;
+  }
+}
+
+@media (max-width: 810px) {
+  .container {
+    width: 95%;/* Ajusta a largura para dispositivos menores */
+  }
+
+  .logo{
+    width: 140px;
+    height: 30px;
+  }
+
+  .input-file {
+    width: 93%;
+  }
+  
+  .label-nf {
+    font-size: 3vw;
+  }
+
+  .footer{
+    font-size: 12.2px;
+  }
+
+  .div-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+ 
+  .label {
+    font-size: 2vw;
+  }
+
+  .transportadora{
+    font-size: 2vw;
+  }
+
+  .label-nf {
+    font-size: 3vw;
+  }
+
+}
+
+@media (max-width: 480px) {
+ 
+  .label {
+    font-size: 3vw;
+  }
+
+  .transportadora{
+    font-size: 3vw;
+  }
+
+  .label-nf {
+    font-size: 4vw;
+  }
+
+  .footer{
+    font-size: 2.66vw;
+  }
+
+}
+
+@media (max-width: 456px) {
+
+  .footer{
+    font-size: 2.56vw;
+  }
+
+}
+
+@media (max-width: 420px) {
+
+  .footer{
+    font-size: 2.5vw;
+  }
+
+}
+
+@media (max-width: 370px) {
+
+  .footer{
+    font-size: 2.4vw;
+  }
+
+}
+
+@media (max-width: 300px) {
+
+  .footer{
+    font-size: 2.3vw;
+  }
+
 }

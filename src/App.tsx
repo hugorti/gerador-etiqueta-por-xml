@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import printJS from 'print-js';
+import { toast } from 'react-toastify';
 
 const App: React.FC = () => {
   const [parsedData, setParsedData] = useState<any>(null);
-  const [quantidadeImpressao, setQuantidadeImpressao] = useState<number>(1);
+  const [quantidadeImpressao, setQuantidadeImpressao] = useState<number>(0);
+  const [numeroPedido, setNumeroPedido] = useState<string>('');
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -33,6 +35,13 @@ const App: React.FC = () => {
       const enderEmit = emitElement.getElementsByTagName('enderDest')[0];
 
       const volume = Number(volElement?.getElementsByTagName('qVol')[0]?.textContent || '0');
+        if (volume === 0) {
+          toast.error("A quantidade de volumes da nota está incorreta (valor igual a 0).");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000); // Espera 3 segundos para recarregar a página
+        }
+
       const caixas = volElement?.getElementsByTagName('esp')[0]?.textContent || '';
 
       const enderData = {
@@ -71,19 +80,11 @@ const App: React.FC = () => {
     }
   };
 
-  const formatCNPJ = (cnpj: any) => {
-    // Remove caracteres não numéricos
+  const formatCNPJ = (cnpj: string) => {
     const cleanedCNPJ = cnpj.replace(/\D/g, '');
-  
-    // Aplica a formatação
-    if (cleanedCNPJ.length === 14) {
-      return cleanedCNPJ.replace(
-        /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
-        '$1.$2.$3/$4-$5'
-      );
-    }
-  
-    return cnpj; // Retorna o original se não tiver 14 dígitos
+    return cleanedCNPJ.length === 14
+      ? cleanedCNPJ.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5')
+      : cnpj;
   };
 
   const handleImprimir = () => {
@@ -93,78 +94,107 @@ const App: React.FC = () => {
         printable: 'print-content',
         type: 'html',
         style: `
-          .div-title { width: 100%; font-size: 20px; align-items: center; }
-          .transportadora {width: 100%; margin-right: 20px;}
-          .label {width: 100%;  font-weight: bold; }
-          .div-endereco {justify-content: space-between;}
-          .footer { border: 1px solid black; background-color: black; text-decoration: underline; margin-top: 10px; padding: 5px;}
-          .page { page-break-after: always;}
-          @media print { .page { margin: 0; } }
+         @media print {
+            body {
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                }
+              .div-title { width: 100%; font-size: 20px; }
+              .transportadora{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                text-decoration: underline;
+              }
+              .label { font-weight: bold; }
+              .div-trans{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                height: 30px;
+                
+              }
+              .div-section { width: 65%; margin-top: 20px; background-color: black; padding: 10px; }
+              .div-endereco { justify-content: space-between; }
+              .footer { border: 1px solid black; background-color: black; text-decoration: underline; margin-top: 10px; padding: 5px; }
+              .page { page-break-after: always; margin-left: 10px; }
+              .div-label-nf{
+                  justify-content: space-between;
+                }
+              .label-nf {font-weight: 800;}
+          }
         `,
       });
     }
   };
 
-   // Define o valor inicial quando o componente é montado
-   useEffect(() => {
-    if (parsedData && parsedData.vol && parsedData.vol.qVol) {
-      setQuantidadeImpressao(parsedData.vol.qVol); // Inicializa com o valor de parsedData.vol.qVol
+  useEffect(() => {
+    if (parsedData?.vol?.qVol) {
+      setQuantidadeImpressao(parsedData.vol.qVol);
     }
   }, [parsedData]);
 
   return (
     <div className="container">
-         <h1 className="titulo-importador">Importador de XML</h1>
-        <input type="file" accept=".xml" onChange={handleFileChange} className="input-file" />
-        <div className="form-group">
-          {parsedData && (
-            <div>
-              <div className="input-container">
-                <div className='div-button-imprimir'>
-                  <label className="label">Volumes:</label>
-                  <label className="label">Qtd de volumes da Nota: <strong>{parsedData.vol.qVol}</strong></label>
-                </div>
-                <div className='div-button-imprimir'>
-                  <input
+      <h1 className="titulo-importador">Importador de XML</h1>
+      <input type="file" accept=".xml" onChange={handleFileChange} className="input-file" />
+      <div className="form-group">
+        {parsedData && (
+          <div>
+            <div className="input-container">
+              <div className="div-button-imprimir">
+              <label className="label">Volumes:</label>
+              <input
                     type="number"
                     value={quantidadeImpressao}
                     onChange={(e) => setQuantidadeImpressao(Number(e.target.value))}
-                    min="1"
+                    min={0}
                     max={parsedData.vol.qVol}
                     className="input-number"
                   />
+              </div>
+                <div className="div-button-imprimir">
+                  <label className="label">Número do Pedido:</label>
+                  <input
+                    type="text"
+                    value={numeroPedido}
+                    onChange={(e) => setNumeroPedido(e.target.value)}
+                    className="input-number"
+                  />
+                  </div>
+                <div className="div-button-imprimir">
+                  <label className="label">Qtd de volumes: <strong>{parsedData.vol.qVol}</strong></label>
                   <button onClick={handleImprimir} className="btn-imprimir">Imprimir</button>
                 </div>
-          </div>
-
+            </div>
             <div id="print-content" className="print-section">
               {Array.from({ length: quantidadeImpressao }, (_, index) => (
                 <div className="page" key={index}>
-                  <div className='div-title'>
-                    <p className='transportadora'>{parsedData.transporta.xNome}</p>
-                    <h2><img src="/logo.svg" alt="Logo" className="logo" /></h2>
-                  </div>
-                    <div className='div-endereco'>
-                      <span className="label">RAZÃO: {parsedData.xNome}</span>
+                  <div className="div-section">
+                    <h3 className="div-title"><img src="/logo.svg" alt="Logo" className="logo" /></h3>
+                    <div className="div-trans">
+                      <span className="transportadora">{parsedData.transporta.xNome}</span>
+                      <span className="transportadora">Nº PEDIDO: {numeroPedido}</span>
                     </div>
-                    <div className='div-endereco'>
-                    <span className="label">CNPJ: {formatCNPJ(parsedData.cnpj)}</span>
+                    <div className="div-endereco"><span className="label">RAZÃO: {parsedData.xNome}</span></div>
+                    <div className="div-endereco"><span className="label">CNPJ: {formatCNPJ(parsedData.cnpj)}</span></div>
+                    <div className="div-endereco">
+                      <span className="label">END: {parsedData.enderEmit.xLgr}</span>
+                      <span className="label">NÚMERO: {parsedData.enderEmit.nro}</span>
                     </div>
-                  <div className='div-endereco'>
-                    <span className="label">END: {parsedData.enderEmit.xLgr}</span>
-                    <span className="label">Nº: {parsedData.enderEmit.nro}</span>
+                    <div className="div-endereco">
+                      <span className="label">BAIRRO: {parsedData.enderEmit.xBairro}</span>
+                      <span className="label">{parsedData.enderEmit.xMun} / {parsedData.enderEmit.UF}</span>
+                    </div>
+                    <div className="div-label-nf">
+                      <span className="label">{parsedData.vol.esp} {index + 1} / {quantidadeImpressao}</span>
+                      <span className="label-nf">NF: {parsedData.nNF}</span>
+                    </div>
+                    <div className='div-footer'><span className="footer">CARO CLIENTE, CONFIRA SUA MERCADORIA NO ATO DO RECEBIMENTO</span></div>
                   </div>
-                  <div className='div-endereco'>
-                    <span className="label">BAIRRO: {parsedData.enderEmit.xBairro}</span>
-                    <span className="label">{parsedData.enderEmit.xMun} / {parsedData.enderEmit.UF}</span>
-                  </div>
-                  <div className='div-endereco'>
-                    <span className="label">{parsedData.vol.esp} {index + 1} / {quantidadeImpressao}</span>
-                    <span className="label">NF: {parsedData.nNF}</span>
-                  </div>
-                  <span className="footer">
-                    CARO CLIENTE, CONFIRA SUA MERCADORIA NO ATO DO RECEBIMENTO
-                  </span>
                 </div>
               ))}
             </div>
