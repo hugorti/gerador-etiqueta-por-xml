@@ -138,7 +138,7 @@ const App: React.FC = () => {
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                font-weight: bold;
+                font-weight: 800;
                 text-decoration: underline;
               }
               .label { font-weight: bold; }
