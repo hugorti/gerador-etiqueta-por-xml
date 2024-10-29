@@ -22,63 +22,88 @@ const App: React.FC = () => {
   const parseXML = (xmlString: string) => {
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
-
     const emitElement = xmlDoc.getElementsByTagName('dest')[0];
     const ideElement = xmlDoc.getElementsByTagName('ide')[0];
     const transportaElement = xmlDoc.getElementsByTagName('transporta')[0];
     const volElement = xmlDoc.getElementsByTagName('vol')[0];
 
     if (emitElement) {
-      const cnpj = emitElement.getElementsByTagName('CNPJ')[0]?.textContent || '';
-      const xNome = emitElement.getElementsByTagName('xNome')[0]?.textContent || '';
-      const xFant = emitElement.getElementsByTagName('xFant')[0]?.textContent || '';
-      const enderEmit = emitElement.getElementsByTagName('enderDest')[0];
+        const cnpj = emitElement.getElementsByTagName('CNPJ')[0]?.textContent || '';
+        const xNome = emitElement.getElementsByTagName('xNome')[0]?.textContent || '';
+        const xFant = emitElement.getElementsByTagName('xFant')[0]?.textContent || '';
+        const enderEmit = emitElement.getElementsByTagName('enderDest')[0];
 
-      const volume = Number(volElement?.getElementsByTagName('qVol')[0]?.textContent || '0');
+        const volume = Number(volElement?.getElementsByTagName('qVol')[0]?.textContent || '0');
         if (volume === 0) {
-          toast.error("A quantidade de volumes da nota está incorreta (valor igual a 0).");
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000); // Espera 3 segundos para recarregar a página
+            toast.error("A quantidade de volumes da nota está incorreta (valor igual a 0).");
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000); // Espera 3 segundos para recarregar a página
         }
 
-      const caixas = volElement?.getElementsByTagName('esp')[0]?.textContent || '';
+        const caixas = volElement?.getElementsByTagName('esp')[0]?.textContent || '';
 
-      const enderData = {
-        xLgr: enderEmit?.getElementsByTagName('xLgr')[0]?.textContent || '',
-        nro: enderEmit?.getElementsByTagName('nro')[0]?.textContent || '',
-        xBairro: enderEmit?.getElementsByTagName('xBairro')[0]?.textContent || '',
-        cMun: enderEmit?.getElementsByTagName('cMun')[0]?.textContent || '',
-        xMun: enderEmit?.getElementsByTagName('xMun')[0]?.textContent || '',
-        UF: enderEmit?.getElementsByTagName('UF')[0]?.textContent || '',
-        CEP: enderEmit?.getElementsByTagName('CEP')[0]?.textContent || '',
-        cPais: enderEmit?.getElementsByTagName('cPais')[0]?.textContent || '',
-        xPais: enderEmit?.getElementsByTagName('xPais')[0]?.textContent || '',
-        fone: enderEmit?.getElementsByTagName('fone')[0]?.textContent || '',
-      };
+        let natOp = ideElement?.getElementsByTagName('natOp')[0]?.textContent || '';
+        
+        // Condicional para ajustar o valor de natOp
+        if (natOp.includes('VEND')) {
+            natOp = 'VENDA';
+        } else if (natOp.includes('AMOST')) {
+            natOp = 'AMOSTRA';
+        } else if (natOp.includes('BONIF')) {
+            natOp = 'BONIFICAÇÃO';
+        }
 
-      const parsedData = {
-        cnpj,
-        xNome,
-        xFant,
-        transporta: {
-          xNome: transportaElement?.getElementsByTagName('xNome')[0]?.textContent || '',
-        },
-        vol: {
-          qVol: volume,
-          esp: caixas,
-        },
-        nNF: ideElement?.getElementsByTagName('nNF')[0]?.textContent || '',
-        enderEmit: enderData,
-        IE: emitElement.getElementsByTagName('IE')[0]?.textContent || '',
-        CRT: emitElement.getElementsByTagName('CRT')[0]?.textContent || '',
-      };
+        let transporta = transportaElement?.getElementsByTagName('xNome')[0]?.textContent || '';
 
-      setParsedData(parsedData);
+        // Condicional para ajustar o valor de transporta
+        if (transporta.includes('BERTOL')) {
+            transporta = 'BERTOLINI';
+        } else if (transporta.includes('RODON')) {
+            transporta = 'RODONOVA';
+        } else if (transporta.includes('GUANAB')) {
+          transporta = 'GUANABARA';
+        } else if (transporta.includes('TRANSRAP')) {
+          transporta = 'TRANSRAPIDO';
+        }
+
+        const enderData = {
+            xLgr: enderEmit?.getElementsByTagName('xLgr')[0]?.textContent || '',
+            nro: enderEmit?.getElementsByTagName('nro')[0]?.textContent || '',
+            xBairro: enderEmit?.getElementsByTagName('xBairro')[0]?.textContent || '',
+            cMun: enderEmit?.getElementsByTagName('cMun')[0]?.textContent || '',
+            xMun: enderEmit?.getElementsByTagName('xMun')[0]?.textContent || '',
+            UF: enderEmit?.getElementsByTagName('UF')[0]?.textContent || '',
+            CEP: enderEmit?.getElementsByTagName('CEP')[0]?.textContent || '',
+            cPais: enderEmit?.getElementsByTagName('cPais')[0]?.textContent || '',
+            xPais: enderEmit?.getElementsByTagName('xPais')[0]?.textContent || '',
+            fone: enderEmit?.getElementsByTagName('fone')[0]?.textContent || '',
+        };
+
+        const parsedData = {
+            cnpj,
+            xNome,
+            xFant,
+            transporta: {
+                xNome: transporta,
+            },
+            vol: {
+                qVol: volume,
+                esp: caixas,
+            },
+            nNF: ideElement?.getElementsByTagName('nNF')[0]?.textContent || '',
+            natOp,
+            enderEmit: enderData,
+            IE: emitElement.getElementsByTagName('IE')[0]?.textContent || '',
+            CRT: emitElement.getElementsByTagName('CRT')[0]?.textContent || '',
+        };
+
+        setParsedData(parsedData);
     } else {
-      console.error('Elemento <dest> não encontrado no XML');
+        console.error('Elemento <dest> não encontrado no XML');
     }
-  };
+};
+
 
   const formatCNPJ = (cnpj: string) => {
     const cleanedCNPJ = cnpj.replace(/\D/g, '');
@@ -103,7 +128,11 @@ const App: React.FC = () => {
                   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
                     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
                 }
-              .div-title { width: 100%; font-size: 20px; }
+              .div-title {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                }
               .transportadora{
                 display: flex;
                 flex-direction: column;
@@ -180,7 +209,10 @@ const App: React.FC = () => {
               {Array.from({ length: quantidadeImpressao }, (_, index) => (
                 <div className="page" key={index}>
                   <div className="div-section">
-                    <h3 className="div-title"><img src="/logo.svg" alt="Logo" className="logo" /></h3>
+                    <div className="div-title">
+                      <h3 className=""><img src="/logo.svg" alt="Logo" className="logo" /></h3>
+                      <span className="label-nf">{parsedData.natOp}</span>
+                    </div>
                     <div className="div-trans">
                       <span className="transportadora">{parsedData.transporta.xNome}</span>
                       <span className="transportadora">Nº PEDIDO: {numeroPedido}</span>
