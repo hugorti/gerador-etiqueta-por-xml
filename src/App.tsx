@@ -138,7 +138,7 @@ const App: React.FC = () => {
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                font-weight: bold;
+                font-weight: 800;
                 text-decoration: underline;
               }
               .label { font-weight: bold; }
@@ -147,7 +147,6 @@ const App: React.FC = () => {
                 align-items: center;
                 justify-content: space-between;
                 height: 30px;
-                
               }
               .div-section { width: 65%; margin-top: 20px; background-color: black; padding: 10px; }
               .div-endereco { justify-content: space-between; }
