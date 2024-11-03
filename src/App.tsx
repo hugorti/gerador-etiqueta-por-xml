@@ -141,6 +141,13 @@ const App: React.FC = () => {
                 font-weight: 800;
                 text-decoration: underline;
               }
+                .n-pedido{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+              }
               .label { font-weight: bold; }
               .div-trans{
                 display: flex;
@@ -213,7 +220,7 @@ const App: React.FC = () => {
                     </div>
                     <div className="div-trans">
                       <span className="transportadora">{parsedData.transporta.xNome}</span>
-                      <span className="transportadora">Nº PEDIDO: {numeroPedido}</span>
+                      <span className="n-pedido">Nº PEDIDO: {numeroPedido}</span>
                     </div>
                     <div className="div-endereco"><span className="label">RAZÃO: {parsedData.xNome}</span></div>
                     <div className="div-endereco"><span className="label">CNPJ: {formatCNPJ(parsedData.cnpj)}</span></div>

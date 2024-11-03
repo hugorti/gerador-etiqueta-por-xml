@@ -164,6 +164,14 @@ body {
   text-decoration: underline;
 }
 
+.n-pedido{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
 .div-trans{
   display: flex;
   align-items: center;
