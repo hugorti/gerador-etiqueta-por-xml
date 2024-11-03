@@ -138,7 +138,7 @@ const App: React.FC = () => {
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                font-weight: 800;
+                font-weight: bold;
                 text-decoration: underline;
               }
               .label { font-weight: bold; }
@@ -146,7 +146,6 @@ const App: React.FC = () => {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                width: 100%;
                 height: 30px;
                 
               }
