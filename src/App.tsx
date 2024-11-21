@@ -6,6 +6,7 @@ const App: React.FC = () => {
   const [parsedData, setParsedData] = useState<any>(null);
   const [quantidadeImpressao, setQuantidadeImpressao] = useState<number>(0);
   const [numeroPedido, setNumeroPedido] = useState<string>('');
+  const [numeroOc, setNumeroOc] = useState<string>('');
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -117,6 +118,10 @@ const App: React.FC = () => {
       toast.error("Campo 'Número do Pedido' é obrigatório.");
       return; // Não prossegue com a impressão
     }
+    if (!numeroOc) {
+      toast.error("Campo 'Número da OC' é obrigatório.");
+      return; // Não prossegue com a impressão
+    }
     const printContent = document.getElementById('print-content');
     if (printContent) {
       printJS({
@@ -155,6 +160,21 @@ const App: React.FC = () => {
                 justify-content: space-between;
                 height: 30px;
               }
+              .div-oc{
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: right;
+                font-size: 1.2rem;
+                height: 30px;
+              }
+              .n-oc{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-weight: 800;
+              }
               .div-section { width: 65%; margin-top: 20px; background-color: black; padding: 10px; }
               .div-endereco { justify-content: space-between; }
               .footer { border: 1px solid black; background-color: black; text-decoration: underline; margin-top: 10px; padding: 5px; }
@@ -185,18 +205,18 @@ const App: React.FC = () => {
           <div>
             <div className="input-container">
               <div className="div-button-imprimir">
-              <label className="label">Volumes:</label>
-              <input
-                    type="number"
-                    value={quantidadeImpressao}
-                    onChange={(e) => setQuantidadeImpressao(Number(e.target.value))}
-                    min={0}
-                    max={parsedData.vol.qVol}
-                    className="input-number"
+                <label className="label">Volumes:</label>
+                <input
+                      type="number"
+                      value={quantidadeImpressao}
+                      onChange={(e) => setQuantidadeImpressao(Number(e.target.value))}
+                      min={0}
+                      max={parsedData.vol.qVol}
+                      className="input-number"
                   />
-              </div>
+                </div>
                 <div className="div-button-imprimir">
-                  <label className="label">Número do Pedido:</label>
+                  <label className="label">Nº Pedido:</label>
                   <input
                     type="text"
                     required
@@ -204,6 +224,16 @@ const App: React.FC = () => {
                     onChange={(e) => setNumeroPedido(e.target.value)}
                     className="input-number"
                   />
+                  </div>
+                  <div className="div-button-imprimir">
+                    <label className="label">Nº OC:</label>
+                    <input
+                      type="text"
+                      required
+                      value={numeroOc}
+                      onChange={(e) => setNumeroOc(e.target.value)}
+                      className="input-number"
+                    />
                   </div>
                 <div className="div-button-imprimir">
                   <label className="label">Qtd de volumes: <strong>{parsedData.vol.qVol}</strong></label>
@@ -217,6 +247,9 @@ const App: React.FC = () => {
                     <div className="div-title">
                       <h3 className=""><img src="/logo.svg" alt="Logo" className="logo" /></h3>
                       <span className="label-nf">{parsedData.natOp}</span>
+                    </div>
+                    <div className="div-oc">
+                      <span className="n-oc">OC: {numeroOc}</span>
                     </div>
                     <div className="div-trans">
                       <span className="transportadora">{parsedData.transporta.xNome}</span>

@@ -172,6 +172,23 @@ body {
   font-weight: bold;
 }
 
+.n-oc{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.div-oc{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: right;
+  font-size: 1.2rem;
+  height: 30px;
+}
+
 .div-trans{
   display: flex;
   align-items: center;
@@ -187,8 +204,7 @@ body {
 
 .div-footer {
   width: 100%;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 
 /* Estilos responsivos */
@@ -243,11 +259,11 @@ body {
   }
 
   .footer{
-    font-size: 12.2px;
+    font-size: 14.2px;
   }
 
   .div-section {
-    width: 100%;
+    width: 80%;
   }
 }
 
@@ -261,8 +277,16 @@ body {
     font-size: 2vw;
   }
 
+  .n-pedido{
+    font-size: 2vw;
+  }
+
   .label-nf {
     font-size: 3vw;
+  }
+
+  .footer{
+    font-size: 11.2px;
   }
 
 }
