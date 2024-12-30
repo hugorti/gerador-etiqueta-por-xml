@@ -144,8 +144,9 @@ const App: React.FC = () => {
                 }
               .transportadora{
                 display: flex;
+                width: 70%;
                 flex-direction: column;
-                align-items: center;
+                align-items: left;
                 justify-content: center;
                 font-weight: 800;
                 text-decoration: underline;
