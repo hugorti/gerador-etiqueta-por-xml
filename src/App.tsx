@@ -187,7 +187,6 @@ const App: React.FC = () => {
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                   font-weight: 800;
                 }
               .div-label-nf{
                   justify-content: space-between;
