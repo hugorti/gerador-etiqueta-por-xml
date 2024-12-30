@@ -49,6 +49,8 @@ const App: React.FC = () => {
         // Condicional para ajustar o valor de natOp
         if (natOp.includes('VEND')) {
             natOp = 'VENDA';
+        } else if (natOp.includes('VDA')) {
+          natOp = 'VENDA';
         } else if (natOp.includes('AMOST')) {
             natOp = 'AMOSTRA';
         } else if (natOp.includes('BONIF')) {
@@ -66,6 +68,8 @@ const App: React.FC = () => {
           transporta = 'GUANABARA';
         } else if (transporta.includes('TRANSRAP')) {
           transporta = 'TRANSRAPIDO';
+        }else if (transporta.includes('LEITE EXPRESS')) {
+          transporta = 'LEITE EXPRESS';
         }
 
         const enderData = {
