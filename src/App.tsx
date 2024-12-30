@@ -182,7 +182,7 @@ const App: React.FC = () => {
               }
               .div-section { width: 65%; margin-top: 20px; background-color: black; padding: 10px; }
               .div-endereco { justify-content: space-between; }
-              .footer { font-weight: 640; background-color: black; text-decoration: underline; margin-top: 10px; }
+              .footer { font-weight: 600; background-color: black; text-decoration: underline; margin-top: 10px; }
               .page { page-break-after: always; margin-left: 10px; }
               .footer-importador{
                   display: flex;
@@ -281,7 +281,7 @@ const App: React.FC = () => {
                       <span className="label-nf">NF: {parsedData.nNF}</span>
                     </div>
                     <div className='div-footer'>
-                      <span className="footer">CARO CLIENTE, CONFIRA SUA MERCADORIA NO ATO DO RECEBIMENTO</span>
+                      <span className="footer">CARO CLIENTE, CONFIRA A MERCADORIA NO ATO DO RECEBIMENTO</span>
                       <span className="footer-importador">Desenvolvido por: TI LABOTRAT</span>
                     </div>
                   </div>
