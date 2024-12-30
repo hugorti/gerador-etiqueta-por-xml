@@ -182,7 +182,7 @@ const App: React.FC = () => {
               }
               .div-section { width: 65%; margin-top: 20px; background-color: black; padding: 10px; }
               .div-endereco { justify-content: space-between; }
-              .footer { background-color: black; text-decoration: underline; margin-top: 10px; padding: 5px; }
+              .footer { font-weight: 640; background-color: black; text-decoration: underline; margin-top: 10px; }
               .page { page-break-after: always; margin-left: 10px; }
               .footer-importador{
                   display: flex;
