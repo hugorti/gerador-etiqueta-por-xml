@@ -177,8 +177,14 @@ const App: React.FC = () => {
               }
               .div-section { width: 65%; margin-top: 20px; background-color: black; padding: 10px; }
               .div-endereco { justify-content: space-between; }
-              .footer { border: 1px solid black; background-color: black; text-decoration: underline; margin-top: 10px; padding: 5px; }
+              .footer { background-color: black; text-decoration: underline; margin-top: 10px; padding: 5px; }
               .page { page-break-after: always; margin-left: 10px; }
+              .footer-importador{
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                   font-weight: 800;
+                }
               .div-label-nf{
                   justify-content: space-between;
                 }
@@ -198,7 +204,8 @@ const App: React.FC = () => {
 
   return (
     <div className="container">
-      <h1 className="titulo-importador">Importador de XML</h1>
+      <span className="titulo-importador">Importador de XML</span>
+      <span className="footer-importador">Desenvolvido por: TI LABOTRAT</span>
       <input type="file" accept=".xml" onChange={handleFileChange} className="input-file" />
       <div className="form-group">
         {parsedData && (
@@ -269,7 +276,10 @@ const App: React.FC = () => {
                       <span className="label-nf">{parsedData.vol.esp} {index + 1} / {quantidadeImpressao}</span>
                       <span className="label-nf">NF: {parsedData.nNF}</span>
                     </div>
-                    <div className='div-footer'><span className="footer">CARO CLIENTE, CONFIRA SUA MERCADORIA NO ATO DO RECEBIMENTO</span></div>
+                    <div className='div-footer'>
+                      <span className="footer">CARO CLIENTE, CONFIRA SUA MERCADORIA NO ATO DO RECEBIMENTO</span>
+                      <span className="footer-importador">Desenvolvido por: TI LABOTRAT</span>
+                    </div>
                   </div>
                 </div>
               ))}
