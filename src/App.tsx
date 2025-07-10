@@ -7,6 +7,8 @@ const App: React.FC = () => {
   const [quantidadeImpressao, setQuantidadeImpressao] = useState<number>(0);
   const [numeroPedido, setNumeroPedido] = useState<string>('');
   const [numeroOc, setNumeroOc] = useState<string>('');
+  const [cnpjManual, setCnpjManual] = useState<string>('');
+  const [usarCnpjManual, setUsarCnpjManual] = useState<boolean>(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -104,11 +106,11 @@ const App: React.FC = () => {
         };
 
         setParsedData(parsedData);
+        setCnpjManual(cnpj); // Define o CNPJ do XML como valor inicial
     } else {
         console.error('Elemento <dest> não encontrado no XML');
     }
-};
-
+  };
 
   const formatCNPJ = (cnpj: string) => {
     const cleanedCNPJ = cnpj.replace(/\D/g, '');
@@ -120,11 +122,11 @@ const App: React.FC = () => {
   const handleImprimir = () => {
     if (!numeroPedido) {
       toast.error("Campo 'Número do Pedido' é obrigatório.");
-      return; // Não prossegue com a impressão
+      return;
     }
     if (!numeroOc) {
       toast.error("Campo 'Número da OC' é obrigatório.");
-      return; // Não prossegue com a impressão
+      return;
     }
     const printContent = document.getElementById('print-content');
     if (printContent) {
@@ -199,7 +201,6 @@ const App: React.FC = () => {
     }
   };
 
-
   useEffect(() => {
     if (parsedData?.vol?.qVol) {
       setQuantidadeImpressao(parsedData.vol.qVol);
@@ -218,38 +219,58 @@ const App: React.FC = () => {
               <div className="div-button-imprimir">
                 <label className="label">Volumes:</label>
                 <input
-                      type="number"
-                      value={quantidadeImpressao}
-                      onChange={(e) => setQuantidadeImpressao(Number(e.target.value))}
-                      min={0}
-                      max={parsedData.vol.qVol}
-                      className="input-number"
-                  />
-                </div>
+                  type="number"
+                  value={quantidadeImpressao}
+                  onChange={(e) => setQuantidadeImpressao(Number(e.target.value))}
+                  min={0}
+                  max={parsedData.vol.qVol}
+                  className="input-number"
+                />
+              </div>
+              <div className="div-button-imprimir">
+                <label className="label">Nº Pedido:</label>
+                <input
+                  type="text"
+                  required
+                  value={numeroPedido}
+                  onChange={(e) => setNumeroPedido(e.target.value)}
+                  className="input-number"
+                />
+              </div>
+              <div className="div-button-imprimir">
+                <label className="label">Nº OC:</label>
+                <input
+                  type="text"
+                  required
+                  value={numeroOc}
+                  onChange={(e) => setNumeroOc(e.target.value)}
+                  className="input-number"
+                />
+              </div>
+              <div className="div-button-imprimir">
+                <label className="label">Usar CNPJ diferente:</label>
+                <input
+                  type="checkbox"
+                  checked={usarCnpjManual}
+                  onChange={(e) => setUsarCnpjManual(e.target.checked)}
+                />
+              </div>
+              {usarCnpjManual && (
                 <div className="div-button-imprimir">
-                  <label className="label">Nº Pedido:</label>
+                  <label className="label">CNPJ Manual:</label>
                   <input
                     type="text"
-                    required
-                    value={numeroPedido}
-                    onChange={(e) => setNumeroPedido(e.target.value)}
+                    value={cnpjManual}
+                    onChange={(e) => setCnpjManual(e.target.value)}
                     className="input-number"
+                    placeholder="Digite o CNPJ"
                   />
-                  </div>
-                  <div className="div-button-imprimir">
-                    <label className="label">Nº OC:</label>
-                    <input
-                      type="text"
-                      required
-                      value={numeroOc}
-                      onChange={(e) => setNumeroOc(e.target.value)}
-                      className="input-number"
-                    />
-                  </div>
-                <div className="div-button-imprimir">
-                  <label className="label">Qtd de volumes: <strong>{parsedData.vol.qVol}</strong></label>
-                  <button onClick={handleImprimir} className="btn-imprimir">Imprimir</button>
                 </div>
+              )}
+              <div className="div-button-imprimir">
+                <label className="label">Qtd de volumes: <strong>{parsedData.vol.qVol}</strong></label>
+                <button onClick={handleImprimir} className="btn-imprimir">Imprimir</button>
+              </div>
             </div>
             <div id="print-content" className="print-section">
               {Array.from({ length: quantidadeImpressao }, (_, index) => (
@@ -267,15 +288,9 @@ const App: React.FC = () => {
                       <span className="n-pedido">Nº PEDIDO: {numeroPedido}</span>
                     </div>
                     <div className="div-endereco"><span className="label">RAZÃO: {parsedData.xNome}</span></div>
-                    <div className="div-endereco"><span className="label">CNPJ: {formatCNPJ(parsedData.cnpj)}</span></div>
-                    {/* <div className="div-endereco">
-                      <span className="label">END: {parsedData.enderEmit.xLgr}</span>
-                      <span className="label">NÚMERO: {parsedData.enderEmit.nro}</span>
-                    </div>
                     <div className="div-endereco">
-                      <span className="label">BAIRRO: {parsedData.enderEmit.xBairro}</span>
-                      <span className="label">{parsedData.enderEmit.xMun} / {parsedData.enderEmit.UF}</span>
-                    </div> */}
+                      <span className="label">CNPJ: {formatCNPJ(usarCnpjManual ? cnpjManual : parsedData.cnpj)}</span>
+                    </div>
                     <div className="div-label-nf">
                       <span className="label-nf">{parsedData.vol.esp} {index + 1} / {quantidadeImpressao}</span>
                       <span className="label-nf">NF: {parsedData.nNF}</span>
