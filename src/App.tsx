@@ -268,14 +268,8 @@ const App: React.FC = () => {
                     </div>
                     <div className="div-endereco"><span className="label">RAZÃO: {parsedData.xNome}</span></div>
                     <div className="div-endereco"><span className="label">CNPJ: {formatCNPJ(parsedData.cnpj)}</span></div>
-                    <div className="div-endereco">
-                      <span className="label">END: {parsedData.enderEmit.xLgr}</span>
-                      <span className="label">NÚMERO: {parsedData.enderEmit.nro}</span>
-                    </div>
-                    <div className="div-endereco">
-                      <span className="label">BAIRRO: {parsedData.enderEmit.xBairro}</span>
-                      <span className="label">{parsedData.enderEmit.xMun} / {parsedData.enderEmit.UF}</span>
-                    </div>
+                    
+                    
                     <div className="div-label-nf">
                       <span className="label-nf">{parsedData.vol.esp} {index + 1} / {quantidadeImpressao}</span>
                       <span className="label-nf">NF: {parsedData.nNF}</span>
