@@ -1,30 +1,30 @@
 /* Estilos gerais */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: #f4f4f4; /* Cor de fundo */
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  width: 900px;
+  margin-top: 2rem;
+  width: 90rem;
   background: white;
   border: 2px solid black; /* Borda azul */
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-height: 525px;
+  height: 43rem;
   overflow: auto;
 }
 
-
-.body-container{
+.body-container {
   width: 100%;
 }
 
@@ -44,7 +44,7 @@ body {
   color: white;
 }
 
-.div-endereco{
+.div-endereco {
   display: flex;
   width: 100%;
   height: auto;
@@ -52,21 +52,21 @@ body {
   align-items: center;
 }
 
-.div-label-nf{
+.div-label-nf {
   display: flex;
   width: 100%;
-  
+
   align-items: center;
   justify-content: space-between;
 }
 
-.footer{
+.footer {
   background-color: black;
   color: white;
   text-decoration: underline;
 }
 
-.footer-importador{
+.footer-importador {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,16 +95,28 @@ body {
   padding: 10px; /* Espaçamento interno do campo */
   border: 1px solid #ff3333; /* Borda azul */
   border-radius: 4px; /* Borda arredondada */
-  width: 97%; /* Largura total do container */
+
   font-size: 16px; /* Tamanho da fonte */
   background-color: #f9f9f9; /* Cor de fundo leve */
 }
-
+#print-content {
+  margin-top: 10rem;
+  width: 100%;
+  height: 33rem;
+  overflow: scroll;
+}
+.titulos-arquivo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  left: 40%;
+  text-align: center;
+}
 /* Estilos para o container do input */
 .input-container {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
+  position: absolute;
+  top: 30%;
   margin-bottom: 15px; /* Espaçamento abaixo do container do input */
   align-items: center;
   justify-content: center;
@@ -117,25 +129,26 @@ body {
   font-weight: bold; /* Negrito */
 }
 
-.label-nf{
+.label-nf {
   display: block;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
-} 
+}
 
 /* Estilos para o campo numérico */
 .input-number {
   padding: 10px; /* Espaçamento interno do campo numérico */
   border: 1px solid #ff3333; /* Borda azul */
   border-radius: 4px; /* Borda arredondada */
-  width: 50%; /* Largura total do container */
+  width: 100%; /* Largura total do container */
   font-size: 16px; /* Tamanho da fonte */
   background-color: #f9f9f9; /* Cor de fundo leve */
 }
 
 /* Estilos para o botão de imprimir */
 .btn-imprimir {
+  width: 100%;
   padding: 10px 20px; /* Espaçamento interno do botão */
   border: none; /* Remove borda padrão */
   border-radius: 4px; /* Borda arredondada */
@@ -150,19 +163,44 @@ body {
   background-color: #c73a3a; /* Cor do botão ao passar o mouse */
 }
 
-.div-button-imprimir{
+.div-button-imprimir {
   display: flex;
   width: 100%;
   flex-direction: column;
 }
 
-.page{
+.checkbox-escondido {
+  display: none;
+}
+
+.botao-checkbox {
+  text-align: center;
+  display: inline-block;
+  padding: 8px 16px;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+
+.botao-checkbox.inativo {
+  background-color: #2ecc71;
+}
+
+/* Estado marcado = vermelho */
+.botao-checkbox.ativo {
+  background-color: #e74c3c;
+}
+
+.page {
   display: flex;
   margin-bottom: 15px;
   justify-content: center;
 }
 
-.transportadora{
+.transportadora {
   display: flex;
   width: 70%;
   flex-direction: column;
@@ -172,7 +210,7 @@ body {
   text-decoration: underline;
 }
 
-.n-pedido{
+.n-pedido {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -180,7 +218,7 @@ body {
   font-weight: bold;
 }
 
-.n-oc{
+.n-oc {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -188,7 +226,7 @@ body {
   font-weight: 800;
 }
 
-.div-oc{
+.div-oc {
   display: flex;
   align-items: center;
   text-align: center;
@@ -197,14 +235,14 @@ body {
   height: 30px;
 }
 
-.div-trans{
+.div-trans {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 30px;
 }
 
-.div-section{
+.div-section {
   width: 60%;
   border: 1px solid;
   padding: 10px;
@@ -218,42 +256,42 @@ body {
 /* Estilos responsivos */
 @media (max-width: 950px) {
   .container {
-    max-width: 800px;/* Ajusta a largura para dispositivos menores */
+    max-width: 800px; /* Ajusta a largura para dispositivos menores */
   }
 
   .label {
     font-size: 1.5vw;
   }
 
-  .transportadora{
+  .transportadora {
     font-size: 1.5vw;
   }
 
-  .footer{
+  .footer {
     font-size: 90%;
   }
 }
 
 @media (max-width: 860px) {
   .container {
-    max-width: 740px;/* Ajusta a largura para dispositivos menores */
+    max-width: 740px; /* Ajusta a largura para dispositivos menores */
   }
 
   .input-file {
     width: 93%;
   }
 
-  .footer{
+  .footer {
     font-size: 13.5px;
   }
 }
 
 @media (max-width: 810px) {
   .container {
-    width: 95%;/* Ajusta a largura para dispositivos menores */
+    width: 95%; /* Ajusta a largura para dispositivos menores */
   }
 
-  .logo{
+  .logo {
     width: 140px;
     height: 30px;
   }
@@ -261,12 +299,12 @@ body {
   .input-file {
     width: 93%;
   }
-  
+
   .label-nf {
     font-size: 3vw;
   }
 
-  .footer{
+  .footer {
     font-size: 14.2px;
   }
 
@@ -276,16 +314,15 @@ body {
 }
 
 @media (max-width: 680px) {
- 
   .label {
     font-size: 2vw;
   }
 
-  .transportadora{
+  .transportadora {
     font-size: 2vw;
   }
 
-  .n-pedido{
+  .n-pedido {
     font-size: 2vw;
   }
 
@@ -293,19 +330,17 @@ body {
     font-size: 3vw;
   }
 
-  .footer{
+  .footer {
     font-size: 11.2px;
   }
-
 }
 
 @media (max-width: 480px) {
- 
   .label {
     font-size: 3vw;
   }
 
-  .transportadora{
+  .transportadora {
     font-size: 3vw;
   }
 
@@ -313,43 +348,35 @@ body {
     font-size: 4vw;
   }
 
-  .footer{
+  .footer {
     font-size: 2.66vw;
   }
-
 }
 
 @media (max-width: 456px) {
   .container {
-    width: 93%;/* Ajusta a largura para dispositivos menores */
+    width: 93%; /* Ajusta a largura para dispositivos menores */
   }
 
-  .footer{
+  .footer {
     font-size: 2.58vw;
   }
-
 }
 
 @media (max-width: 420px) {
-
-  .footer{
+  .footer {
     font-size: 2.5vw;
   }
-
 }
 
 @media (max-width: 370px) {
-
-  .footer{
+  .footer {
     font-size: 2.4vw;
   }
-
 }
 
 @media (max-width: 330px) {
-
-  .footer{
+  .footer {
     font-size: 2.3vw;
   }
-
 }
