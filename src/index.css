@@ -28,10 +28,6 @@ body {
   width: 100%;
 }
 
-.label {
-  font-weight: bold; /* Texto em negrito */
-}
-
 .div-title {
   display: flex;
   align-items: center;
@@ -95,7 +91,7 @@ body {
   padding: 10px; /* Espaçamento interno do campo */
   border: 1px solid #ff3333; /* Borda azul */
   border-radius: 4px; /* Borda arredondada */
-
+  width: 100%;
   font-size: 16px; /* Tamanho da fonte */
   background-color: #f9f9f9; /* Cor de fundo leve */
 }
@@ -110,7 +106,8 @@ body {
   justify-content: center;
   flex-direction: column;
   position: absolute;
-  left: 40%;
+  left: 26%;
+  width: 45rem;
   text-align: center;
 }
 /* Estilos para o container do input */
@@ -183,6 +180,8 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-left: 10px;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .botao-checkbox.inativo {
@@ -351,6 +350,11 @@ body {
   .footer {
     font-size: 2.66vw;
   }
+  .botao-checkbox {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
 }
 
 @media (max-width: 456px) {
@@ -371,7 +375,7 @@ body {
 
 @media (max-width: 370px) {
   .footer {
-    font-size: 2.4vw;
+    font-size: clamp(12px, 2.4vw, 16px);
   }
 }
 
