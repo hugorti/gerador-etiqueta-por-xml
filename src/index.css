@@ -194,7 +194,7 @@ body {
 
 .page {
   display: flex;
-  width: 90%;
+  width: 45rem;
 
   margin: 0 0rem 2rem 10rem;
   justify-content: center;
@@ -275,6 +275,9 @@ body {
     left: 13%;
     width: 45rem;
   }
+  .page {
+    width: 40rem;
+  }
 }
 @media (max-width: 950px) {
   .container {
@@ -314,6 +317,10 @@ body {
 
   .footer {
     font-size: 13.5px;
+  }
+  .page {
+    display: flex;
+    width: 35rem;
   }
 }
 
