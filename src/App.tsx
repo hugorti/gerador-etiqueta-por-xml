@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      setExpandido(true);
       const reader = new FileReader();
       reader.onload = (e) => {
         const xmlString = e.target?.result as string;
@@ -188,7 +189,7 @@ const App: React.FC = () => {
                 align-items: center;
                 text-align: center;
                 justify-content: right;
-                font-size: 1.2rem;
+         
                 height: 30px;
               }
               .n-oc{
@@ -200,7 +201,7 @@ const App: React.FC = () => {
               }
               .div-section { width: 65%; margin-top: 20px; padding: 10px; }
               .div-endereco { justify-content: space-between; }
-              .footer { background-color: black;color: white;text-decoration: underline; }
+              .footer { background-color: black;color: white; }
               
               .page { page-break-after: always; margin-left: 10px; }
               .footer-importador{
@@ -211,7 +212,7 @@ const App: React.FC = () => {
               .div-label-nf{
                   justify-content: space-between;
                 }
-              .label-nf {font-weight: 800;}
+              .label-nf {font-weight: 600;}
           }
         `,
       });
@@ -232,7 +233,6 @@ const App: React.FC = () => {
         <input
           type="file"
           accept=".xml"
-          onClick={() => setExpandido(true)}
           onChange={handleFileChange}
           className="input-file"
         />

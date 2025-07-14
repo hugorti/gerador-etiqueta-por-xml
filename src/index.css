@@ -22,10 +22,10 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   height: 10rem;
   overflow: auto;
+  transition: height 0.3s ease;
 }
 .altura-expandida {
-  height: 43rem !important;
-  transition: height 0.4s ease-in-out;
+  height: auto !important;
 }
 
 .body-container {
@@ -63,8 +63,8 @@ body {
 .footer {
   background-color: black;
   color: white;
-  text-decoration: underline;
-  font-size: 11px;
+
+  font-size: 14px;
 }
 
 .footer-importador {
@@ -72,7 +72,7 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 }
 
 .logo {
@@ -133,8 +133,8 @@ body {
 
 .label-nf {
   display: block;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 25px;
+
   margin-bottom: 10px;
   text-transform: uppercase;
 }
