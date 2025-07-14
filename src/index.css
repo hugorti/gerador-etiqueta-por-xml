@@ -20,8 +20,12 @@ body {
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 43rem;
+  height: 10rem;
   overflow: auto;
+}
+.altura-expandida {
+  height: 43rem !important;
+  transition: height 0.4s ease-in-out;
 }
 
 .body-container {
@@ -60,6 +64,7 @@ body {
   background-color: black;
   color: white;
   text-decoration: underline;
+  font-size: 11px;
 }
 
 .footer-importador {
@@ -106,7 +111,7 @@ body {
   justify-content: center;
   flex-direction: column;
   position: absolute;
-  left: 26%;
+  left: 27%;
   width: 45rem;
   text-align: center;
 }
@@ -131,6 +136,7 @@ body {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 /* Estilos para o campo numérico */

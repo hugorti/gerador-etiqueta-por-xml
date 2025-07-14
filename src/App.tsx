@@ -3,6 +3,8 @@ import printJS from "print-js";
 import { toast } from "react-toastify";
 
 const App: React.FC = () => {
+  const [expandido, setExpandido] = useState(false);
+
   const [parsedData, setParsedData] = useState<any>(null);
   const [quantidadeImpressao, setQuantidadeImpressao] = useState<number>(0);
   const [numeroPedido, setNumeroPedido] = useState<string>("");
@@ -196,9 +198,10 @@ const App: React.FC = () => {
                 justify-content: center;
                 font-weight: 800;
               }
-              .div-section { width: 65%; margin-top: 20px; background-color: black; padding: 10px; }
+              .div-section { width: 65%; margin-top: 20px; padding: 10px; }
               .div-endereco { justify-content: space-between; }
-              .footer { font-weight: 600; background-color: black; text-decoration: underline; margin-top: 10px; }
+              .footer { background-color: black;color: white;text-decoration: underline; }
+              
               .page { page-break-after: always; margin-left: 10px; }
               .footer-importador{
                   display: flex;
@@ -222,13 +225,14 @@ const App: React.FC = () => {
   }, [parsedData]);
 
   return (
-    <div className="container">
+    <div className={`container ${expandido ? "altura-expandida" : ""}`}>
       <div className="titulos-arquivo">
         <span className="titulo-importador">Importador de XML</span>
         <span className="footer-importador">Desenvolvido por: TI LABOTRAT</span>
         <input
           type="file"
           accept=".xml"
+          onClick={() => setExpandido(true)}
           onChange={handleFileChange}
           className="input-file"
         />
@@ -348,7 +352,7 @@ const App: React.FC = () => {
                     </div>
                     <div className="div-footer">
                       <span className="footer">
-                        CARO CLIENTE, CONFIRA A MERCADORIA NO ATO DO RECEBIMENTO
+                        CONFIRA A MERCADORIA NO ATO DO RECEBIMENTO
                       </span>
                       <span className="footer-importador">
                         Desenvolvido por: TI LABOTRAT
